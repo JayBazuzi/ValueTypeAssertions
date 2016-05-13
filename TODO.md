@@ -1,2 +1,5 @@
 - create nuget package
 - appveyor build
+- tests for each kind of mistake
+- make `IEquatable` optional
+- add ` IComparable`
