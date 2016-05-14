@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HappyPaths.cs" />
+    <Compile Include="Correctly Implemented Types\BuiltinTypes.cs" />
+    <Compile Include="Correctly Implemented Types\Class.cs" />
+    <Compile Include="Correctly Implemented Types\Struct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ValueTypeAssertions\ValueTypeAssertions.csproj">

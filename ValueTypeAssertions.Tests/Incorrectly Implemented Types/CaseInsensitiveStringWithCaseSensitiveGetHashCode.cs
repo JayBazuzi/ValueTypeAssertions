@@ -10,7 +10,7 @@ namespace ValueTypeAssertions.Tests
 	public class CaseInsensitiveStringWithCaseSensitiveGetHashCode
 	{
 		[TestMethod]
-		public void Test()
+		public void ShouldFail()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new C("foo"), new C("FOO"))))
 				.ShouldThrow<AssertFailedException>()
