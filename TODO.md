@@ -5,3 +5,6 @@
 - warn-as-error
 - ReSharper settigns
 - ReSharper build verification
+- appveyor build versioning
+- appveyor build status in README
+- travis-CI build
