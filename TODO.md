@@ -1,5 +1,7 @@
-- appveyor publish nuget
+* appveyor publish nuget
 - tests for each kind of mistake
 - make `IEquatable` optional
 - add ` IComparable`
 - warn-as-error
+- ReSharper settigns
+- ReSharper build verification
