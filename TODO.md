@@ -1,7 +1,7 @@
-MMFs
+Minimum Marketable Features
 ====
-* equality
-- add ` IComparable`
+* equality checks
+- ` IComparable` checks
 
 Engineering Tasks on current MMF
 ====

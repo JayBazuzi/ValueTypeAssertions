@@ -30,8 +30,8 @@ namespace ValueTypeAssertions
 
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
 
-			CallBinaryOperator<T, bool>(item, equalItem, Expression.Equal).Should().BeTrue("==");
-			CallBinaryOperator<T, bool>(item, equalItem, Expression.NotEqual).Should().BeFalse("!=");
+			CallBinaryOperator<T, bool>(item, equalItem, Expression.Equal).Should().BeTrue("operator ==");
+			CallBinaryOperator<T, bool>(item, equalItem, Expression.NotEqual).Should().BeFalse("operator !=");
 		}
 
 		public static void HasValueInequality<T>(T item, T differentItem)
@@ -54,8 +54,8 @@ namespace ValueTypeAssertions
 			// the chances of a hash collision are rare enough that this is a good test assertion.
 			item.GetHashCode().Should().NotBe(differentItem.GetHashCode(), "GetHashCode()");
 
-			CallBinaryOperator<T, bool>(item, differentItem, Expression.Equal).Should().BeFalse("==");
-			CallBinaryOperator<T, bool>(item, differentItem, Expression.NotEqual).Should().BeTrue("!=");
+			CallBinaryOperator<T, bool>(item, differentItem, Expression.Equal).Should().BeFalse("operator ==");
+			CallBinaryOperator<T, bool>(item, differentItem, Expression.NotEqual).Should().BeTrue("operator !=");
 		}
 
 		private static TResult CallBinaryOperator<T, TResult>(T item1,
