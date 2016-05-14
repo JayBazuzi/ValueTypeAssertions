@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/drlkrd4ftaou35j1?svg=true)](https://ci.appveyor.com/project/JayBazuzi/valuetypeassertions)
+
 # ValueTypeAssertions
 
 By "value type", I mean "a type that represents a value in some domain."
