@@ -1,8 +1,9 @@
 version: 1.0.{build}
 image: Visual Studio 2015
+environment:
+  TreatWarningsAsErrors: true
 before_build:
-- ps: nuget restore
+- nuget restore
 build:
   publish_nuget: true
   publish_nuget_symbols: true
-  verbosity: minimal
