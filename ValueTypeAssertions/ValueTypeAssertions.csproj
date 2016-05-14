@@ -7,8 +7,8 @@
     <ProjectGuid>{7F27D5B3-A517-4B70-9368-5A52CE3205AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ValueTypeAssertions</RootNamespace>
-    <AssemblyName>ValueTypeAssertions</AssemblyName>
+    <RootNamespace>Bazuzi.ValueTypeAssertions</RootNamespace>
+    <AssemblyName>Bazuzi.ValueTypeAssertions</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,11 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
   <Target Name="AfterBuild">
+    <Exec Command="nuget pack ValueTypeAssertions.csproj -Symbols"></Exec>
   </Target>
-  -->
 </Project>
