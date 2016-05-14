@@ -10,15 +10,17 @@ namespace ValueTypeAssertions
 	public static class ValueTypeAssertions
 	{
 		public static void HasValueEquality<T>(T item, T equalItem)
-			where T : IEquatable<T>
 		{
-			var equatable = (IEquatable<T>) item;
-			equatable.Equals(equalItem).Should().BeTrue("IEquatable<>.Equals");
-			equatable.Equals(item).Should().BeTrue("IEquatable<>.Equals(self)");
-			equatable.Equals(null).Should().BeFalse("IEquatable<>.Equals(null)");
+			if (item is IEquatable<T>)
+			{
+				var equatable = (IEquatable<T>) item;
+				equatable.Equals(equalItem).Should().BeTrue("IEquatable<>.Equals");
+				equatable.Equals(item).Should().BeTrue("IEquatable<>.Equals(self)");
+				equatable.Equals(null).Should().BeFalse("IEquatable<>.Equals(null)");
+			}
 
-			item.Equals((object) equalItem).Should().BeTrue("Equals(object)");
-			item.Equals((object) item).Should().BeTrue("Equals(self)");
+			item.Equals(equalItem).Should().BeTrue("Equals(object)");
+			item.Equals(item).Should().BeTrue("Equals(self)");
 			item.Equals(null).Should().BeFalse("Equals(object null)");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
 
@@ -33,12 +35,14 @@ namespace ValueTypeAssertions
 		}
 
 		public static void HasValueInequality<T>(T item, T differentItem)
-			where T : IEquatable<T>
 		{
-			var equatable = (IEquatable<T>) item;
-			equatable.Equals(differentItem).Should().BeFalse("IEquatable<>.Equals");
+			if (item is IEquatable<T>)
+			{
+				var equatable = (IEquatable<T>) item;
+				equatable.Equals(differentItem).Should().BeFalse("IEquatable<>.Equals");
+			}
 
-			item.Equals((object) differentItem).Should().BeFalse("Equals(object)");
+			item.Equals(differentItem).Should().BeFalse("Equals(object)");
 
 			((object) item).Equals(differentItem).Should().BeFalse("object.Equals()");
 

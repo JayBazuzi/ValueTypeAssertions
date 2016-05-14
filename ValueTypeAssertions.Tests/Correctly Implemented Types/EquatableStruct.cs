@@ -7,16 +7,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ValueTypeAssertions.Tests
 {
 	[TestClass]
-	public class CorrectlyImplementedCustomStruct
+	public class CorrectlyImplementedEquatableCustomStruct
 	{
 		[TestMethod]
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(1), new AStruct(1)))).ShouldNotThrow();
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct(1)))).ShouldThrow<AssertFailedException>();
-
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(), new AStruct()))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(), new AStruct()))).ShouldThrow<AssertFailedException>();
 		}
 
 		[TestMethod]
@@ -24,11 +21,9 @@ namespace ValueTypeAssertions.Tests
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(1), new AStruct(2)))).ShouldThrow<AssertFailedException>();
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct(2)))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct()))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(), new AStruct(2)))).ShouldNotThrow();
 		}
 
-		private struct AStruct
+		private struct AStruct : IEquatable<AStruct>
 		{
 			public readonly int X;
 
@@ -36,6 +31,8 @@ namespace ValueTypeAssertions.Tests
 			{
 				X = x;
 			}
+
+			bool IEquatable<AStruct>.Equals(AStruct other) => Equals(other);
 
 			public static bool operator ==(AStruct left, AStruct right)
 			{

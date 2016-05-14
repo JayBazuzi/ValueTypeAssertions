@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ValueTypeAssertions.Tests
 {
 	[TestClass]
-	public class CorrectlyImplementedCustomClass
+	public class CorrectlyImplementedCustomEquatableClass
 	{
 		[TestMethod]
 		public void EqualValues()
@@ -23,7 +23,7 @@ namespace ValueTypeAssertions.Tests
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2)))).ShouldNotThrow();
 		}
 
-		private class AClass
+		private class AClass : IEquatable<AClass>
 		{
 			public AClass(int x)
 			{
@@ -37,12 +37,12 @@ namespace ValueTypeAssertions.Tests
 				if (ReferenceEquals(null, obj)) return false;
 				if (ReferenceEquals(this, obj)) return true;
 				if (obj.GetType() != GetType()) return false;
-				return Equals((AClass) obj);
+				return ((IEquatable<AClass>) this).Equals((AClass) obj);
 			}
 
 			public override int GetHashCode()
 			{
-				return X;
+				return X.GetHashCode();
 			}
 
 			public static bool operator ==(AClass left, AClass right)
@@ -55,8 +55,10 @@ namespace ValueTypeAssertions.Tests
 				return !Equals(left, right);
 			}
 
-			protected bool Equals(AClass other)
+			bool IEquatable<AClass>.Equals(AClass other)
 			{
+				if (ReferenceEquals(null, other)) return false;
+				if (ReferenceEquals(this, other)) return true;
 				return X == other.X;
 			}
 		}
