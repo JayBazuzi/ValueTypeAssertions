@@ -1,4 +1,3 @@
-* ReSharper settings
 - tests for each kind of mistake
 - make `IEquatable` optional
 - add ` IComparable`
