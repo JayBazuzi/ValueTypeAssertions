@@ -5,7 +5,6 @@ Minimum Marketable Features
 
 Engineering Tasks on current MMF
 ====
-- tests for each kind of mistake
 - ReSharper build verification
 - appveyor build versioning
 - travis-CI build
