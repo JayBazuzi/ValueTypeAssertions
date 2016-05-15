@@ -1,4 +1,5 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/drlkrd4ftaou35j1?svg=true)](https://ci.appveyor.com/project/JayBazuzi/valuetypeassertions)
+[![Build status](https://ci.appveyor.com/api/projects/status/drlkrd4ftaou35j1/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/valuetypeassertions/branch/master)
+
 
 # ValueTypeAssertions
 
