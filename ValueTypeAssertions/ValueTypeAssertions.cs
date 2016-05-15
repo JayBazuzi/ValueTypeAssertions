@@ -16,7 +16,8 @@ namespace ValueTypeAssertions
 				var equatable = (IEquatable<T>) item;
 				equatable.Equals(equalItem).Should().BeTrue("IEquatable<>.Equals");
 				equatable.Equals(item).Should().BeTrue("IEquatable<>.Equals(self)");
-				equatable.Equals(null).Should().BeFalse("IEquatable<>.Equals(null)");
+				((Action)(() => equatable.Equals(default(T)))).ShouldNotThrow<NullReferenceException>("IEquatable<>.Equals(null)");
+				equatable.Equals(default(T)).Should().BeFalse("IEquatable<>.Equals(null)");
 			}
 
 			item.Equals(equalItem).Should().BeTrue("Equals(object)");

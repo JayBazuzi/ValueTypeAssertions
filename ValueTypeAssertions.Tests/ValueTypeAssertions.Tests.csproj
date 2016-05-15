@@ -55,12 +55,13 @@
     <Compile Include="Correctly Implemented Types\Class.cs" />
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
-    <Compile Include="Incorrectly Implemented Types\ObjectEquals\EqualsUsesHashCode.cs" />
-    <Compile Include="Incorrectly Implemented Types\ObjectEquals\EqualsDoesNotCheckType.cs" />
-    <Compile Include="Incorrectly Implemented Types\ObjectEquals\EqualsDoesNotCheckForNull.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\DoesNotCheckForNull.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\EqualsUsesHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\EqualsDoesNotCheckType.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\EqualsDoesNotCheckForNull.cs" />
     <Compile Include="Incorrectly Implemented Types\Operators\CopiedTheOperatorBangEqImplementationToEqEq.cs" />
     <Compile Include="Incorrectly Implemented Types\Operators\CopiedTheOperatorEqEqImplementationToBangEq.cs" />
-    <Compile Include="Incorrectly Implemented Types\ObjectEquals\DefaultObjectEquals.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\DefaultObjectEquals.cs" />
     <Compile Include="Incorrectly Implemented Types\GetHashCode\DefaultGetHashCode.cs" />
     <Compile Include="Incorrectly Implemented Types\GetHashCode\GetHashCodeAlwaysReturns0.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
