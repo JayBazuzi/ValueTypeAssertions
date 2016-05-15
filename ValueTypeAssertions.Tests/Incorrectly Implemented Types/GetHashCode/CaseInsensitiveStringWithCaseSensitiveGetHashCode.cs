@@ -21,7 +21,7 @@ namespace ValueTypeAssertions.Tests
 		{
 			public C(string value)
 			{
-				Value = value;
+				this.Value = value;
 			}
 
 			public readonly string Value;
@@ -36,7 +36,7 @@ namespace ValueTypeAssertions.Tests
 
 			public override int GetHashCode()
 			{
-				return Value.GetHashCode();
+				return this.Value.GetHashCode();
 			}
 
 			public static bool operator ==(C left, C right)
@@ -53,7 +53,7 @@ namespace ValueTypeAssertions.Tests
 			{
 				if (ReferenceEquals(null, other)) return false;
 				if (ReferenceEquals(this, other)) return true;
-				return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+				return string.Equals(this.Value, other.Value, StringComparison.OrdinalIgnoreCase);
 			}
 		}
 	}

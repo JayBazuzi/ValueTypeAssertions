@@ -34,7 +34,7 @@ namespace ValueTypeAssertions.Tests
 
 			public AStruct(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public static bool operator ==(AStruct left, AStruct right)

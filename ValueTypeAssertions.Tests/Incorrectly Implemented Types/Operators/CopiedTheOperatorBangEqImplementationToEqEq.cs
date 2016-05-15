@@ -20,7 +20,7 @@ namespace ValueTypeAssertions.Tests
 		[TestMethod]
 		public void DifferentValues()
 		{
-			((Action)(() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2))))
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2))))
 				.ShouldThrow<AssertFailedException>()
 				.And.Message.Should().Contain("operator ==");
 		}
@@ -29,7 +29,7 @@ namespace ValueTypeAssertions.Tests
 		{
 			public AClass(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public readonly int X;
@@ -44,7 +44,7 @@ namespace ValueTypeAssertions.Tests
 
 			public override int GetHashCode()
 			{
-				return X;
+				return this.X;
 			}
 
 			public static bool operator ==(AClass left, AClass right)
@@ -60,7 +60,7 @@ namespace ValueTypeAssertions.Tests
 
 			protected bool Equals(AClass other)
 			{
-				return X == other.X;
+				return this.X == other.X;
 			}
 		}
 	}

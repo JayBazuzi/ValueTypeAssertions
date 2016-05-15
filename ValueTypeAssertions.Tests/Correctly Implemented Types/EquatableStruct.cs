@@ -29,7 +29,7 @@ namespace ValueTypeAssertions.Tests
 
 			public AStruct(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			bool IEquatable<AStruct>.Equals(AStruct other) => Equals(other);

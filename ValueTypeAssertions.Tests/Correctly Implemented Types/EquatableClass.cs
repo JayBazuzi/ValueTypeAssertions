@@ -27,7 +27,7 @@ namespace ValueTypeAssertions.Tests
 		{
 			public AClass(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public readonly int X;
@@ -42,7 +42,7 @@ namespace ValueTypeAssertions.Tests
 
 			public override int GetHashCode()
 			{
-				return X.GetHashCode();
+				return this.X.GetHashCode();
 			}
 
 			public static bool operator ==(AClass left, AClass right)
@@ -59,7 +59,7 @@ namespace ValueTypeAssertions.Tests
 			{
 				if (ReferenceEquals(null, other)) return false;
 				if (ReferenceEquals(this, other)) return true;
-				return X == other.X;
+				return this.X == other.X;
 			}
 		}
 	}

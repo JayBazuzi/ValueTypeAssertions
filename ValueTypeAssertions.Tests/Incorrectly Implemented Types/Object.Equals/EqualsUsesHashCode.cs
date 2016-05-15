@@ -22,8 +22,8 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 		{
 			public C(int x, int y)
 			{
-				X = x;
-				Y = y;
+				this.X = x;
+				this.Y = y;
 			}
 
 			public readonly int X;
@@ -33,7 +33,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 			{
 				// This uses (((h1 << 5) + h1) ^ h2);
 				// http://referencesource.microsoft.com/#mscorlib/system/array.cs,87d117c8cc772cca
-				return Tuple.Create(X, Y).GetHashCode();
+				return Tuple.Create(this.X, this.Y).GetHashCode();
 			}
 
 			public static bool operator ==(C left, C right)
@@ -49,6 +49,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 			public override bool Equals(object obj)
 			{
 				if (ReferenceEquals(null, obj)) return false;
+
 				// Oops!
 				return GetHashCode() == obj.GetHashCode();
 			}
