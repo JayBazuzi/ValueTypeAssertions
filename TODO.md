@@ -5,6 +5,9 @@ Minimum Marketable Features
 
 User stories on the current MMF
 ====
-- appveyor build versioning
-- appveyor publish nuget
 - travis-CI build (blocked on https://github.com/travis-ci/travis-ci/issues/5932)
+
+Engineering tasks on the current story
+====
+- shared build properties?
+

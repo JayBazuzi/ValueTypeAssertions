@@ -1,6 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/drlkrd4ftaou35j1/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/valuetypeassertions/branch/master)
 
-
 # ValueTypeAssertions
 
 By "value type", I mean "a type that represents a value in some domain."
@@ -28,3 +27,7 @@ public void NtfsPathIsCaseInsensitive()
   ValueTypeAssertions.HasValueEquality(new NtfsPath("foo.txt"), new NtfsPath("FOO.TXT"));
 }
 ```
+
+# Acknowledgements
+
+99% of the ideas in this project came from other people. A big chunk came from [Brian Geihsler](https://gist.github.com/bgeihsgt).
