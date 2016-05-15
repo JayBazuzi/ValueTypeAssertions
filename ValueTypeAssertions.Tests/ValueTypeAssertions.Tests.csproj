@@ -56,6 +56,7 @@
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\CallsBaseEquals.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\EqualityCheckIsReversed.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\NullCheckIsReversed.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\SelfCheckIsReversed.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\DoesNotCheckForNull.cs" />
