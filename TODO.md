@@ -3,9 +3,15 @@ Minimum Marketable Features
 * equality checks
 - ` IComparable` checks
 
-Engineering Tasks on current MMF
+User stories on the current MMF
 ====
-* ReSharper build verification
+* travis-CI build
 - appveyor build versioning
-- travis-CI build
 - appveyor and Travis publish nuget
+
+Engineering Tasks on current story
+====
+- get it to build
+- check in .travis.yml
+- readme badge
+- delete build definition and recreate from .travis.yml
