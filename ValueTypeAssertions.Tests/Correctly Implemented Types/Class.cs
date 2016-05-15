@@ -55,6 +55,11 @@ namespace ValueTypeAssertions.Tests
 				return !Equals(left, right);
 			}
 
+			public override string ToString()
+			{
+				return X.ToString();
+			}
+
 			protected bool Equals(AClass other)
 			{
 				return X == other.X;

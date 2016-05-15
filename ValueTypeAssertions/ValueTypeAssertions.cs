@@ -29,6 +29,8 @@ namespace ValueTypeAssertions
 
 			((object) item).Equals(equalItem).Should().BeTrue("object.Equals()");
 
+			if (item.ToString() != item.GetType().FullName) { item.ToString().Should().Be(equalItem.ToString(), "ToString()"); }
+
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
 
 			CallBinaryOperator<T, bool>(item, equalItem, Expression.Equal).Should().BeTrue("operator ==");

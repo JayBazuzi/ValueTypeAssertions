@@ -71,6 +71,7 @@
     <Compile Include="Incorrectly Implemented Types\Object.Equals\DefaultObjectEquals.cs" />
     <Compile Include="Incorrectly Implemented Types\GetHashCode\DefaultGetHashCode.cs" />
     <Compile Include="Incorrectly Implemented Types\GetHashCode\GetHashCodeAlwaysReturns0.cs" />
+    <Compile Include="Incorrectly Implemented Types\ToString\CaseInsensitiveStringWithCaseSensitiveToString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Incorrectly Implemented Types\GetHashCode\CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
   </ItemGroup>
