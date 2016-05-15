@@ -55,15 +55,15 @@
     <Compile Include="Correctly Implemented Types\Class.cs" />
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
-    <Compile Include="Incorrectly Implemented Types\EqualsDoesNotCheckType.cs" />
-    <Compile Include="Incorrectly Implemented Types\EqualsDoesNotCheckForNull.cs" />
-    <Compile Include="Incorrectly Implemented Types\CopiedTheOperatorBangEqImplementationToEqEq.cs" />
-    <Compile Include="Incorrectly Implemented Types\CopiedTheOperatorEqEqImplementationToBangEq.cs" />
-    <Compile Include="Incorrectly Implemented Types\DefaultObjectEquals.cs" />
-    <Compile Include="Incorrectly Implemented Types\DefaultGetHashCode.cs" />
-    <Compile Include="Incorrectly Implemented Types\GetHashCodeAlwaysReturns0.cs" />
+    <Compile Include="Incorrectly Implemented Types\ObjectEquals\EqualsDoesNotCheckType.cs" />
+    <Compile Include="Incorrectly Implemented Types\ObjectEquals\EqualsDoesNotCheckForNull.cs" />
+    <Compile Include="Incorrectly Implemented Types\Operators\CopiedTheOperatorBangEqImplementationToEqEq.cs" />
+    <Compile Include="Incorrectly Implemented Types\Operators\CopiedTheOperatorEqEqImplementationToBangEq.cs" />
+    <Compile Include="Incorrectly Implemented Types\ObjectEquals\DefaultObjectEquals.cs" />
+    <Compile Include="Incorrectly Implemented Types\GetHashCode\DefaultGetHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\GetHashCode\GetHashCodeAlwaysReturns0.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Incorrectly Implemented Types\CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\GetHashCode\CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ValueTypeAssertions\ValueTypeAssertions.csproj">
