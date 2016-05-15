@@ -21,6 +21,7 @@ namespace ValueTypeAssertions
 
 			item.Equals(equalItem).Should().BeTrue("Equals(object)");
 			item.Equals(item).Should().BeTrue("Equals(self)");
+			((Action) (() => item.Equals(null))).ShouldNotThrow<NullReferenceException>("Equals(object null)");
 			item.Equals(null).Should().BeFalse("Equals(object null)");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
 
