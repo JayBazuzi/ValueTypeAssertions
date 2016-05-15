@@ -56,6 +56,7 @@
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
     <Compile Include="Incorrectly Implemented Types\CopiedTheOperatorEqEqImplementationToBangEq.cs" />
+    <Compile Include="Incorrectly Implemented Types\DefaultObjectEquals.cs" />
     <Compile Include="Incorrectly Implemented Types\DefaultGetHashCode.cs" />
     <Compile Include="Incorrectly Implemented Types\GetHashCodeAlwaysReturns0.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
