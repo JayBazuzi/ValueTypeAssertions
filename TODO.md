@@ -5,7 +5,7 @@ Minimum Marketable Features
 
 Engineering Tasks on current MMF
 ====
-- ReSharper build verification
+* ReSharper build verification
 - appveyor build versioning
 - travis-CI build
 - appveyor and Travis publish nuget
