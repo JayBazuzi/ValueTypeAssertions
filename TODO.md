@@ -3,8 +3,8 @@ Minimum Marketable Features
 * equality checks
 - ` IComparable` checks
 
-Engineering Tasks on current MMF
+User stories on the current MMF
 ====
 - appveyor build versioning
-- travis-CI build
-- appveyor and Travis publish nuget
+- appveyor publish nuget
+- travis-CI build (blocked on https://github.com/travis-ci/travis-ci/issues/5932)
