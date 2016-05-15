@@ -7,8 +7,8 @@
     <ProjectGuid>{84F91A31-17F9-406C-BAD4-B3B8A71CDD0F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ValueTypeAssertions.Tests</RootNamespace>
-    <AssemblyName>ValueTypeAssertions.Tests</AssemblyName>
+    <RootNamespace>Bazuzi.ValueTypeAssertions.Tests</RootNamespace>
+    <AssemblyName>Bazuzi.ValueTypeAssertions.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

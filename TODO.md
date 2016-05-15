@@ -9,4 +9,3 @@ Engineering Tasks on current MMF
 - appveyor build versioning
 - travis-CI build
 - appveyor and Travis publish nuget
-- normalize namespaces

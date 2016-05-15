@@ -4,7 +4,7 @@ using System;
 using System.Linq.Expressions;
 using FluentAssertions;
 
-namespace ValueTypeAssertions
+namespace Bazuzi.ValueTypeAssertions
 {
 	public static class ValueTypeAssertions
 	{

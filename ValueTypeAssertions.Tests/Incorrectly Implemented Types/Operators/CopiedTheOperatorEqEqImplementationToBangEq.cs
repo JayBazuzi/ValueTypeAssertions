@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Operators
 {
 	[TestClass]
 	public class CopiedTheOperatorEqEqImplementationToBangEq

@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.GetHashCode
 {
 	[TestClass]
 	public class CaseInsensitiveStringWithCaseSensitiveGetHashCode

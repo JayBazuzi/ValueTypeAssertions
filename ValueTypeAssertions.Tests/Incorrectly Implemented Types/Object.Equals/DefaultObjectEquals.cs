@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Object.Equals
 {
 	[TestClass]
 	public class DefaultObjectEquals
@@ -41,12 +41,12 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 				return !Equals(left, right);
 			}
 
-			// Oops!
-			//public override bool Equals(object obj)
-			//{
-			//	if (ReferenceEquals(null, obj)) return false;
-
 			//	if (ReferenceEquals(this, obj)) return true;
+			//	if (ReferenceEquals(null, obj)) return false;
+			//{
+			//public override bool Equals(object obj)
+
+			// Oops!
 			//	if (obj.GetType() != GetType()) return false;
 			//	return Equals((C)obj);
 			//}
