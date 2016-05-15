@@ -15,15 +15,15 @@ namespace ValueTypeAssertions
 				var equatable = (IEquatable<T>) item;
 				equatable.Equals(equalItem).Should().BeTrue("IEquatable<>.Equals");
 				equatable.Equals(item).Should().BeTrue("IEquatable<>.Equals(self)");
-				((Action) (() => equatable.Equals(default(T)))).ShouldNotThrow<NullReferenceException>("IEquatable<>.Equals(null)");
+				equatable.Invoking(_ => _.Equals(default(T))).ShouldNotThrow<NullReferenceException>("IEquatable<>.Equals(null)");
 				equatable.Equals(default(T)).Should().BeFalse("IEquatable<>.Equals(null)");
 			}
 
 			item.Equals(equalItem).Should().BeTrue("Equals(object)");
 			item.Equals(item).Should().BeTrue("Equals(self)");
-			((Action) (() => item.Equals(null))).ShouldNotThrow<NullReferenceException>("Equals(object null)");
+			item.Invoking(_ => _.Equals(null)).ShouldNotThrow<NullReferenceException>("Equals(object null)");
 			item.Equals(null).Should().BeFalse("Equals(object null)");
-			((Action) (() => item.Equals(new object()))).ShouldNotThrow<InvalidCastException>("compare to other type");
+			item.Invoking(_ => _.Equals(new object())).ShouldNotThrow<InvalidCastException>("compare to other type");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
 
 			((object) item).Equals(equalItem).Should().BeTrue("object.Equals()");
