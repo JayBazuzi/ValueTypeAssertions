@@ -7,14 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 {
 	[TestClass]
-	public class DoesNotCheckForNull
+	public class CallsBaseEquals
 	{
 		[TestMethod]
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new C(1), new C(1))))
 				.ShouldThrow<AssertFailedException>()
-				.And.Message.Should().Contain("IEquatable<>.Equals(null)");
+				.And.Message.Should().Contain("IEquatable<>.Equals");
 		}
 
 		private class C : IEquatable<C>
@@ -52,9 +52,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 			bool IEquatable<C>.Equals(C other)
 			{
 				// Oops!
-				//if (ReferenceEquals(null, other)) return false;
-				if (ReferenceEquals(this, other)) return true;
-				return X == other.X;
+				return base.Equals(other);
 			}
 		}
 	}
