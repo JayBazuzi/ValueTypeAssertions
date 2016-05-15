@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests
+namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 {
 	[TestClass]
 	public class CorrectlyImplementedCustomStruct
@@ -34,7 +34,7 @@ namespace ValueTypeAssertions.Tests
 
 			public AStruct(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public static bool operator ==(AStruct left, AStruct right)

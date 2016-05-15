@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.ToString
 {
 	[TestClass]
 	public class ToStringIsMissingAMember
@@ -21,8 +21,8 @@ namespace ValueTypeAssertions.Tests
 		{
 			public C(string partA, string partB)
 			{
-				PartA = partA;
-				PartB = partB;
+				this.PartA = partA;
+				this.PartB = partB;
 			}
 
 			public readonly string PartA;
@@ -38,7 +38,7 @@ namespace ValueTypeAssertions.Tests
 
 			public override int GetHashCode()
 			{
-				unchecked { return (PartA.GetHashCode()*397) ^ PartB.GetHashCode(); }
+				unchecked { return (this.PartA.GetHashCode()*397) ^ this.PartB.GetHashCode(); }
 			}
 
 			public static bool operator ==(C left, C right)
@@ -54,13 +54,12 @@ namespace ValueTypeAssertions.Tests
 			public override string ToString()
 			{
 				//return PartA + PartB;
-				return PartA; // oops!
-
+				return this.PartA; // oops!
 			}
 
 			protected bool Equals(C other)
 			{
-				return string.Equals(PartA, other.PartA) && string.Equals(PartB, other.PartB);
+				return string.Equals(this.PartA, other.PartA) && string.Equals(this.PartB, other.PartB);
 			}
 		}
 	}

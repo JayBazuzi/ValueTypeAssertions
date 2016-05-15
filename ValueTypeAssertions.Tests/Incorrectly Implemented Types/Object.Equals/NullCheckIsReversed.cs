@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Object.Equals
 {
 	[TestClass]
 	public class NullCheckIsReversed
@@ -21,7 +21,7 @@ namespace ValueTypeAssertions.Tests
 		{
 			public AClass(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public readonly int X;
@@ -37,7 +37,7 @@ namespace ValueTypeAssertions.Tests
 
 			public override int GetHashCode()
 			{
-				return X;
+				return this.X;
 			}
 
 			public static bool operator ==(AClass left, AClass right)
@@ -52,7 +52,7 @@ namespace ValueTypeAssertions.Tests
 
 			protected bool Equals(AClass other)
 			{
-				return X == other.X;
+				return this.X == other.X;
 			}
 		}
 	}

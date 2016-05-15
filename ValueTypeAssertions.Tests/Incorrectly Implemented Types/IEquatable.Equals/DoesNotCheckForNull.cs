@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.IEquatable.Equals
 {
 	[TestClass]
 	public class DoesNotCheckForNull
@@ -21,7 +21,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 		{
 			public C(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public readonly int X;
@@ -36,7 +36,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 
 			public override int GetHashCode()
 			{
-				return X;
+				return this.X;
 			}
 
 			public static bool operator ==(C left, C right)
@@ -54,7 +54,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 				// Oops!
 				//if (ReferenceEquals(null, other)) return false;
 				if (ReferenceEquals(this, other)) return true;
-				return X == other.X;
+				return this.X == other.X;
 			}
 		}
 	}

@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.IEquatable.Equals
 {
 	[TestClass]
 	public class EqualityCheckIsReversed
@@ -29,7 +29,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 		{
 			public C(int x)
 			{
-				X = x;
+				this.X = x;
 			}
 
 			public readonly int X;
@@ -44,7 +44,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 
 			public override int GetHashCode()
 			{
-				return X;
+				return this.X;
 			}
 
 			public static bool operator ==(C left, C right)
@@ -63,7 +63,7 @@ namespace ValueTypeAssertions.Tests.Incorrectly_Implemented_Types
 				if (ReferenceEquals(this, other)) return true;
 
 				// Oops!
-				return X != other.X;
+				return this.X != other.X;
 			}
 		}
 	}

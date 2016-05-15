@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ValueTypeAssertions.Tests
+namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.ToString
 {
 	[TestClass]
 	public class CaseInsensitiveStringWithCaseSensitiveToString
@@ -17,31 +17,26 @@ namespace ValueTypeAssertions.Tests
 				.And.Message.Should().Contain("ToString()");
 		}
 
-		private class C 
+		private class C
 		{
 			public C(string value)
 			{
-				Value = value;
+				this.Value = value;
 			}
 
 			public readonly string Value;
-
-			protected bool Equals(C other)
-			{
-				return string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
-			}
 
 			public override bool Equals(object obj)
 			{
 				if (ReferenceEquals(null, obj)) return false;
 				if (ReferenceEquals(this, obj)) return true;
-				if (obj.GetType() != this.GetType()) return false;
+				if (obj.GetType() != GetType()) return false;
 				return Equals((C) obj);
 			}
 
 			public override int GetHashCode()
 			{
-				return (Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(Value) : 0);
+				return this.Value != null ? StringComparer.OrdinalIgnoreCase.GetHashCode(this.Value) : 0;
 			}
 
 			public static bool operator ==(C left, C right)
@@ -56,7 +51,12 @@ namespace ValueTypeAssertions.Tests
 
 			public override string ToString()
 			{
-				return Value;
+				return this.Value;
+			}
+
+			protected bool Equals(C other)
+			{
+				return string.Equals(this.Value, other.Value, StringComparison.OrdinalIgnoreCase);
 			}
 		}
 	}
