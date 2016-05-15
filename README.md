@@ -18,7 +18,7 @@ class NtfsPath
 public void NtfsPathHasValueEquality()
 {
   ValueTypeAssertions.HasValueEquality(new NtfsPath("foo.txt"), new NtfsPath("foo.txt"));
-  ValueTypeAssertions.HasValueEquality(new NtfsPath("foo.txt"), new NtfsPath("bar.txt"));
+  ValueTypeAssertions.HasValueInequality(new NtfsPath("foo.txt"), new NtfsPath("bar.txt"));
 }
 
 [Test]
