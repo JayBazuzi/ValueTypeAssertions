@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>0660;0661</NoWarn>
+    <NoWarn>0660;0661;CS0659</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,8 +55,26 @@
     <Compile Include="Correctly Implemented Types\Class.cs" />
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\CallsBaseEquals.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\EqualityCheckIsReversed.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\NullCheckIsReversed.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\SelfCheckIsReversed.cs" />
+    <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\DoesNotCheckForNull.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\TypeCheckIsReversed.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\NullCheckIsReversed.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\SelfCheckIsReversed.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\EqualsUsesHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\EqualsDoesNotCheckType.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\EqualsDoesNotCheckForNull.cs" />
+    <Compile Include="Incorrectly Implemented Types\Operators\CopiedTheOperatorBangEqImplementationToEqEq.cs" />
+    <Compile Include="Incorrectly Implemented Types\Operators\CopiedTheOperatorEqEqImplementationToBangEq.cs" />
+    <Compile Include="Incorrectly Implemented Types\Object.Equals\DefaultObjectEquals.cs" />
+    <Compile Include="Incorrectly Implemented Types\GetHashCode\DefaultGetHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\GetHashCode\GetHashCodeAlwaysReturns0.cs" />
+    <Compile Include="Incorrectly Implemented Types\ToString\ToStringIsMissingAMember.cs" />
+    <Compile Include="Incorrectly Implemented Types\ToString\CaseInsensitiveStringWithCaseSensitiveToString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Incorrectly Implemented Types\CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
+    <Compile Include="Incorrectly Implemented Types\GetHashCode\CaseInsensitiveStringWithCaseSensitiveGetHashCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ValueTypeAssertions\ValueTypeAssertions.csproj">

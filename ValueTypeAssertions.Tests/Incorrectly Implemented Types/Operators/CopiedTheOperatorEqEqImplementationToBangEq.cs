@@ -7,20 +7,22 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ValueTypeAssertions.Tests
 {
 	[TestClass]
-	public class CorrectlyImplementedCustomClass
+	public class CopiedTheOperatorEqEqImplementationToBangEq
 	{
 		[TestMethod]
 		public void EqualValues()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1)))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(1)))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1))))
+				.ShouldThrow<AssertFailedException>()
+				.And.Message.Should().Contain("operator !=");
 		}
 
 		[TestMethod]
 		public void DifferentValues()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(2)))).ShouldThrow<AssertFailedException>();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2)))).ShouldNotThrow();
+			((Action)(() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2))))
+				.ShouldThrow<AssertFailedException>()
+				.And.Message.Should().Contain("operator !=");
 		}
 
 		private class AClass
@@ -52,12 +54,8 @@ namespace ValueTypeAssertions.Tests
 
 			public static bool operator !=(AClass left, AClass right)
 			{
-				return !Equals(left, right);
-			}
-
-			public override string ToString()
-			{
-				return X.ToString();
+				// oops!
+				return Equals(left, right);
 			}
 
 			protected bool Equals(AClass other)

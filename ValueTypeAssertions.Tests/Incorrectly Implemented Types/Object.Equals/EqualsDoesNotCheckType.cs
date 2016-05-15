@@ -7,20 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ValueTypeAssertions.Tests
 {
 	[TestClass]
-	public class CorrectlyImplementedCustomClass
+	public class EqualsDoesNotCheckType
 	{
 		[TestMethod]
 		public void EqualValues()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1)))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(1)))).ShouldThrow<AssertFailedException>();
-		}
-
-		[TestMethod]
-		public void DifferentValues()
-		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(2)))).ShouldThrow<AssertFailedException>();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2)))).ShouldNotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1))))
+				.ShouldThrow<AssertFailedException>()
+				.And.Message.Should().Contain("compare to other type");
 		}
 
 		private class AClass
@@ -36,7 +30,8 @@ namespace ValueTypeAssertions.Tests
 			{
 				if (ReferenceEquals(null, obj)) return false;
 				if (ReferenceEquals(this, obj)) return true;
-				if (obj.GetType() != GetType()) return false;
+				// Oops!
+				//if (obj.GetType() != GetType()) return false;
 				return Equals((AClass) obj);
 			}
 
@@ -53,11 +48,6 @@ namespace ValueTypeAssertions.Tests
 			public static bool operator !=(AClass left, AClass right)
 			{
 				return !Equals(left, right);
-			}
-
-			public override string ToString()
-			{
-				return X.ToString();
 			}
 
 			protected bool Equals(AClass other)

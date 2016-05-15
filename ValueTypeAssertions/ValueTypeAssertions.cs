@@ -16,22 +16,25 @@ namespace ValueTypeAssertions
 				var equatable = (IEquatable<T>) item;
 				equatable.Equals(equalItem).Should().BeTrue("IEquatable<>.Equals");
 				equatable.Equals(item).Should().BeTrue("IEquatable<>.Equals(self)");
-				equatable.Equals(null).Should().BeFalse("IEquatable<>.Equals(null)");
+				((Action)(() => equatable.Equals(default(T)))).ShouldNotThrow<NullReferenceException>("IEquatable<>.Equals(null)");
+				equatable.Equals(default(T)).Should().BeFalse("IEquatable<>.Equals(null)");
 			}
 
 			item.Equals(equalItem).Should().BeTrue("Equals(object)");
 			item.Equals(item).Should().BeTrue("Equals(self)");
+			((Action) (() => item.Equals(null))).ShouldNotThrow<NullReferenceException>("Equals(object null)");
 			item.Equals(null).Should().BeFalse("Equals(object null)");
+			((Action)(() => item.Equals(new object()))).ShouldNotThrow<InvalidCastException>("compare to other type");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
-
-			EqualityComparer<T>.Default.Equals(item, equalItem).Should().BeTrue("EqualityComparer<>");
 
 			((object) item).Equals(equalItem).Should().BeTrue("object.Equals()");
 
+			item.ToString().Should().Be(equalItem.ToString(), "ToString()");
+
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
 
-			CallBinaryOperator<T, bool>(item, equalItem, Expression.Equal).Should().BeTrue("==");
-			CallBinaryOperator<T, bool>(item, equalItem, Expression.NotEqual).Should().BeFalse("!=");
+			CallBinaryOperator<T, bool>(item, equalItem, Expression.Equal).Should().BeTrue("operator ==");
+			CallBinaryOperator<T, bool>(item, equalItem, Expression.NotEqual).Should().BeFalse("operator !=");
 		}
 
 		public static void HasValueInequality<T>(T item, T differentItem)
@@ -46,16 +49,14 @@ namespace ValueTypeAssertions
 
 			((object) item).Equals(differentItem).Should().BeFalse("object.Equals()");
 
-			EqualityComparer<T>.Default.Equals(item, differentItem).Should().BeFalse("EqualityComparer<>");
-
 			if (item.ToString() != item.GetType().FullName) { item.ToString().Should().NotBe(differentItem.ToString(), "ToString()"); }
 
 			// Two unequal objects do not necessarily need to have differnet hash codes, but in practice
 			// the chances of a hash collision are rare enough that this is a good test assertion.
 			item.GetHashCode().Should().NotBe(differentItem.GetHashCode(), "GetHashCode()");
 
-			CallBinaryOperator<T, bool>(item, differentItem, Expression.Equal).Should().BeFalse("==");
-			CallBinaryOperator<T, bool>(item, differentItem, Expression.NotEqual).Should().BeTrue("!=");
+			CallBinaryOperator<T, bool>(item, differentItem, Expression.Equal).Should().BeFalse("operator ==");
+			CallBinaryOperator<T, bool>(item, differentItem, Expression.NotEqual).Should().BeTrue("operator !=");
 		}
 
 		private static TResult CallBinaryOperator<T, TResult>(T item1,
