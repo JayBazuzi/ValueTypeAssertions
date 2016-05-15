@@ -27,9 +27,6 @@ namespace ValueTypeAssertions
 			((Action)(() => item.Equals(new object()))).ShouldNotThrow<InvalidCastException>("compare to other type");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
 
-
-			EqualityComparer<T>.Default.Equals(item, equalItem).Should().BeTrue("EqualityComparer<>");
-
 			((object) item).Equals(equalItem).Should().BeTrue("object.Equals()");
 
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
@@ -49,8 +46,6 @@ namespace ValueTypeAssertions
 			item.Equals(differentItem).Should().BeFalse("Equals(object)");
 
 			((object) item).Equals(differentItem).Should().BeFalse("object.Equals()");
-
-			EqualityComparer<T>.Default.Equals(item, differentItem).Should().BeFalse("EqualityComparer<>");
 
 			if (item.ToString() != item.GetType().FullName) { item.ToString().Should().NotBe(differentItem.ToString(), "ToString()"); }
 
