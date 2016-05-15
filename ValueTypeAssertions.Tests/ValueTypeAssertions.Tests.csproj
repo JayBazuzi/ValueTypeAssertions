@@ -55,6 +55,7 @@
     <Compile Include="Correctly Implemented Types\Class.cs" />
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
+    <Compile Include="Incorrectly Implemented Types\EqualsDoesNotCheckType.cs" />
     <Compile Include="Incorrectly Implemented Types\EqualsDoesNotCheckForNull.cs" />
     <Compile Include="Incorrectly Implemented Types\CopiedTheOperatorBangEqImplementationToEqEq.cs" />
     <Compile Include="Incorrectly Implemented Types\CopiedTheOperatorEqEqImplementationToBangEq.cs" />
