@@ -2,6 +2,7 @@ Minimum Marketable Features
 ====
 * equality checks
 - ` IComparable` checks
+- `IEqualityComparer` checks
 
 User stories on the current MMF
 ====
