@@ -10,4 +10,4 @@ User stories on the current MMF
 Engineering tasks on the current story
 ====
 - shared build properties?
-
+- Reject when user passes the same object twice (`var x = ...; HasValueEquality(x, x);`)
