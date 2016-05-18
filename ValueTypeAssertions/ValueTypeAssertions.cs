@@ -65,5 +65,7 @@ namespace Bazuzi.ValueTypeAssertions
 			return Expression.Lambda<Func<TResult>>(@operator(Expression.Constant(item1), Expression.Constant(item2)))
 				.Compile()();
 		}
+		
+		public static int iXXXXXXX = 0;
 	}
 }
