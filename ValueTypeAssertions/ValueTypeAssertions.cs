@@ -28,7 +28,7 @@ namespace Bazuzi.ValueTypeAssertions
 
 			((object) item).Equals(equalItem).Should().BeTrue("object.Equals()");
 
-			item.ToString().Should().Be(equalItem.ToString(), "ToString()");
+			item.ToString().ToUpperInvariant().Should().Be(equalItem.ToString().ToUpperInvariant(), "ToString()");
 
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
 
