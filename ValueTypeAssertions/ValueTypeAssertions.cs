@@ -10,6 +10,8 @@ namespace Bazuzi.ValueTypeAssertions
 	{
 		public static void HasValueEquality<T>(T item, T equalItem)
 		{
+			ReferenceEquals(item, equalItem).Should().BeFalse("Pass two different references to compare.");
+
 			if (item is IEquatable<T>)
 			{
 				var equatable = (IEquatable<T>) item;

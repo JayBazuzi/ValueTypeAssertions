@@ -21,8 +21,6 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 		[TestMethod]
 		public void String()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality("", ""))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueEquality("foo", "foo"))).ShouldNotThrow();
 			((Action) (() => ValueTypeAssertions.HasValueEquality("foo", "bar"))).ShouldThrow<AssertFailedException>();
 			((Action) (() => ValueTypeAssertions.HasValueInequality("foo", "foo"))).ShouldThrow<AssertFailedException>();
 		}
