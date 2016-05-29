@@ -56,6 +56,7 @@
     <Compile Include="Correctly Implemented Types\Class.cs" />
     <Compile Include="Correctly Implemented Types\EquatableStruct.cs" />
     <Compile Include="Correctly Implemented Types\Struct.cs" />
+    <Compile Include="How to use the Assertions\Do not test equality of an object to itself.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\CallsBaseEquals.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\EqualityCheckIsReversed.cs" />
     <Compile Include="Incorrectly Implemented Types\IEquatable.Equals\NullCheckIsReversed.cs" />
