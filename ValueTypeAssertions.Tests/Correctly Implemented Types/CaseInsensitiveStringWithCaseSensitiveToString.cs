@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.ToString
+namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 {
 	[TestClass]
 	public class CaseInsensitiveStringWithCaseSensitiveToString
@@ -13,8 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.ToStrin
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new C("foo"), new C("FOO"))))
-				.ShouldThrow<AssertFailedException>()
-				.And.Message.Should().Contain("ToString()");
+				.ShouldNotThrow();
 		}
 
 		private class C
