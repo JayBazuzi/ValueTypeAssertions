@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2016 Jay Bazuzi - This software may be modified and distributed under the terms of the MIT license.  See the LICENSE.md file for details.
 
 using System;
-using System.Linq.Expressions;
+using System.Reflection;
 using FluentAssertions;
 
 namespace Bazuzi.ValueTypeAssertions
@@ -9,6 +9,7 @@ namespace Bazuzi.ValueTypeAssertions
 	public static class ValueTypeAssertions
 	{
 		public static void HasValueEquality<T>(T item, T equalItem)
+			where T : class
 		{
 			ReferenceEquals(item, equalItem).Should().BeFalse("Pass two different references to compare.");
 
@@ -28,17 +29,18 @@ namespace Bazuzi.ValueTypeAssertions
 			item.Invoking(_ => _.Equals(new object())).ShouldNotThrow<InvalidCastException>("compare to other type");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
 
-			((object) item).Equals(equalItem).Should().BeTrue("object.Equals()");
+			item.Equals(equalItem).Should().BeTrue("object.Equals()");
 
 			item.ToString().ToUpperInvariant().Should().Be(equalItem.ToString().ToUpperInvariant(), "ToString()");
 
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
 
-			CallBinaryOperator<T, bool>(item, equalItem, Expression.Equal).Should().BeTrue("operator ==");
-			CallBinaryOperator<T, bool>(item, equalItem, Expression.NotEqual).Should().BeFalse("operator !=");
+			CallComparisonOperator(item, equalItem, "op_Equality").Should().BeTrue("operator ==");
+			CallComparisonOperator(item, equalItem, "op_Inequality").Should().BeFalse("operator !=");
 		}
 
 		public static void HasValueInequality<T>(T item, T differentItem)
+			where T : class
 		{
 			if (item is IEquatable<T>)
 			{
@@ -48,7 +50,7 @@ namespace Bazuzi.ValueTypeAssertions
 
 			item.Equals(differentItem).Should().BeFalse("Equals(object)");
 
-			((object) item).Equals(differentItem).Should().BeFalse("object.Equals()");
+			item.Equals(differentItem).Should().BeFalse("object.Equals()");
 
 			if (item.ToString() != item.GetType().FullName) { item.ToString().Should().NotBe(differentItem.ToString(), "ToString()"); }
 
@@ -56,16 +58,25 @@ namespace Bazuzi.ValueTypeAssertions
 			// the chances of a hash collision are rare enough that this is a good test assertion.
 			item.GetHashCode().Should().NotBe(differentItem.GetHashCode(), "GetHashCode()");
 
-			CallBinaryOperator<T, bool>(item, differentItem, Expression.Equal).Should().BeFalse("operator ==");
-			CallBinaryOperator<T, bool>(item, differentItem, Expression.NotEqual).Should().BeTrue("operator !=");
+			CallComparisonOperator(item, differentItem, "op_Equality").Should().BeFalse("operator ==");
+			CallComparisonOperator(item, differentItem, "op_Inequality").Should().BeTrue("operator !=");
 		}
 
-		private static TResult CallBinaryOperator<T, TResult>(T item1,
-			T item2,
-			Func<Expression, Expression, BinaryExpression> @operator)
+		private static bool CallComparisonOperator<T>(T item1, T item2, string operatorName)
 		{
-			return Expression.Lambda<Func<TResult>>(@operator(Expression.Constant(item1), Expression.Constant(item2)))
-				.Compile()();
+			return (bool) GetComparisonOperator<T>(operatorName).Invoke(null, new object[] {item1, item2});
+		}
+
+		private static MethodInfo GetComparisonOperator<T>(string operatorName)
+		{
+			var type = typeof(T);
+			while (true)
+			{
+				var methodInfo = type.GetMethod(operatorName, BindingFlags.Static | BindingFlags.Public);
+				if (methodInfo != null) { return methodInfo; }
+				type = type.BaseType;
+				if (type == null) throw new Exception($"No {operatorName} found.");
+			}
 		}
 	}
 }
