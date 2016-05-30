@@ -10,6 +10,15 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 	public class BuiltinTypes
 	{
 		[TestMethod]
+		public void Int()
+		{
+			((Action) (() => ValueTypeAssertions.HasValueEquality(1, 1))).ShouldNotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(1, 2))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(2, 1))).ShouldNotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(2, 2))).ShouldThrow<AssertFailedException>();
+		}
+
+		[TestMethod]
 		public void String()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality("foo", "bar"))).ShouldThrow<AssertFailedException>();
