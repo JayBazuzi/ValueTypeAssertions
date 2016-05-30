@@ -1,12 +1,14 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/drlkrd4ftaou35j1/branch/master?svg=true)](https://ci.appveyor.com/project/JayBazuzi/valuetypeassertions/branch/master)
 
+[Available on NuGet](https://www.nuget.org/packages/Bazuzi.ValueTypeAssertions/)
+
 # ValueTypeAssertions
 
-By "value type", I mean "a type that represents a value in some domain."
+By "value type", I mean "a type that represents a value in some domain." Two of these objects are equal if they have the same value.
 
-To correctly implement this in .Net is tricky. There's `object.Equals()` and `operator ==` and `GetHashCode()` and more. 
+To correctly implement this in .Net is tricky. There's `object.Equals()` and `operator ==` and `GetHashCode()` and more. These are assertions that ensure that you have checked all the checkboxes in implementing equality. 
 
-These are assertions that ensure that you have checked all the checkboxes in implementing equality. You can use it like this:
+You can use it like this:
 
 ```
 class NtfsPath
