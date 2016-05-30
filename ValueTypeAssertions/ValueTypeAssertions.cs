@@ -9,7 +9,6 @@ namespace Bazuzi.ValueTypeAssertions
 	public static class ValueTypeAssertions
 	{
 		public static void HasValueEquality<T>(T item, T equalItem)
-			where T : class
 		{
 			ReferenceEquals(item, equalItem).Should().BeFalse("Pass two different references to compare.");
 
@@ -35,12 +34,11 @@ namespace Bazuzi.ValueTypeAssertions
 
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
 
-			CallComparisonOperator(item, equalItem, "op_Equality").Should().BeTrue("operator ==");
-			CallComparisonOperator(item, equalItem, "op_Inequality").Should().BeFalse("operator !=");
+			CallComparisonOperator(item, equalItem, Operator.Equality).Should().BeTrue("operator ==");
+			CallComparisonOperator(item, equalItem, Operator.Inequality).Should().BeFalse("operator !=");
 		}
 
 		public static void HasValueInequality<T>(T item, T differentItem)
-			where T : class
 		{
 			if (item is IEquatable<T>)
 			{
@@ -58,25 +56,43 @@ namespace Bazuzi.ValueTypeAssertions
 			// the chances of a hash collision are rare enough that this is a good test assertion.
 			item.GetHashCode().Should().NotBe(differentItem.GetHashCode(), "GetHashCode()");
 
-			CallComparisonOperator(item, differentItem, "op_Equality").Should().BeFalse("operator ==");
-			CallComparisonOperator(item, differentItem, "op_Inequality").Should().BeTrue("operator !=");
+			CallComparisonOperator(item, differentItem, Operator.Equality).Should().BeFalse("operator ==");
+			CallComparisonOperator(item, differentItem, Operator.Inequality).Should().BeTrue("operator !=");
 		}
 
-		private static bool CallComparisonOperator<T>(T item1, T item2, string operatorName)
+		private static bool CallComparisonOperator<T>(T item1, T item2, Operator @operator)
 		{
-			return (bool) GetComparisonOperator<T>(operatorName).Invoke(null, new object[] {item1, item2});
+			return GetOverloadedComparisonOperator(item1, item2, @operator) ?? GetBuiltinComparisonOperator(item1, item2, @operator);
 		}
 
-		private static MethodInfo GetComparisonOperator<T>(string operatorName)
+		private static bool GetBuiltinComparisonOperator<T>(T item1, T item2, Operator @operator)
 		{
-			var type = typeof(T);
-			while (true)
+			switch (@operator)
 			{
-				var methodInfo = type.GetMethod(operatorName, BindingFlags.Static | BindingFlags.Public);
-				if (methodInfo != null) { return methodInfo; }
-				type = type.BaseType;
-				if (type == null) throw new Exception($"No {operatorName} found.");
+				case Operator.Equality:
+					return (dynamic) item1 == (dynamic) item2;
+				case Operator.Inequality:
+					return (dynamic) item1 != (dynamic) item2;
 			}
+			throw new InvalidOperationException();
+		}
+
+		private static bool? GetOverloadedComparisonOperator<T>(T item1, T item2, Operator @operator)
+		{
+			var methodInfo = typeof(T).GetMethod(
+				"op_" + @operator,
+				BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy,
+				null,
+				new[] {item1.GetType(), item2.GetType()},
+				null);
+
+			return (bool?) methodInfo?.Invoke(null, new object[] {item1, item2});
+		}
+
+		private enum Operator
+		{
+			Equality,
+			Inequality
 		}
 	}
 }
