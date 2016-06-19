@@ -28,8 +28,6 @@ namespace Bazuzi.ValueTypeAssertions
 			item.Invoking(_ => _.Equals(new object())).ShouldNotThrow<InvalidCastException>("compare to other type");
 			item.Equals(new object()).Should().BeFalse("compare to other type");
 
-			item.Equals(equalItem).Should().BeTrue("object.Equals()");
-
 			item.ToString().ToUpperInvariant().Should().Be(equalItem.ToString().ToUpperInvariant(), "ToString()");
 
 			item.GetHashCode().Should().Be(equalItem.GetHashCode(), "GetHashCode()");
@@ -47,8 +45,6 @@ namespace Bazuzi.ValueTypeAssertions
 			}
 
 			item.Equals(differentItem).Should().BeFalse("Equals(object)");
-
-			item.Equals(differentItem).Should().BeFalse("object.Equals()");
 
 			if (item.ToString() != item.GetType().FullName) { item.ToString().Should().NotBe(differentItem.ToString(), "ToString()"); }
 
