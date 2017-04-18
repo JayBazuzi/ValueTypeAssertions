@@ -2,6 +2,7 @@ Minimum Marketable Features
 ====
 * equality checks
 - ` IComparable` checks
+- `IEqualityComparer` checks
 
 User stories on the current MMF
 ====
@@ -10,4 +11,4 @@ User stories on the current MMF
 Engineering tasks on the current story
 ====
 - shared build properties?
-
+- Reject when user passes the same object twice (`var x = ...; HasValueEquality(x, x);`)

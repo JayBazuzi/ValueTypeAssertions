@@ -90,5 +90,7 @@ namespace Bazuzi.ValueTypeAssertions
 			Equality,
 			Inequality
 		}
+		
+		public static int iXXXXXXX = 0;
 	}
 }
