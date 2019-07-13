@@ -13,7 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.ToStrin
 		public void DifferentValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new C("foo", "bar"), new C("foo", "qux"))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("ToString()");
 		}
 

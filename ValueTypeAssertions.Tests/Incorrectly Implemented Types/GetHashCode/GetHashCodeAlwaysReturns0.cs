@@ -13,7 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.GetHash
 		public void ShouldFail()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new C(1), new C(2))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("GetHashCode()");
 		}
 

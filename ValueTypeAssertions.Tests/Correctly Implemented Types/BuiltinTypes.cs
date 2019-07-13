@@ -12,17 +12,17 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 		[TestMethod]
 		public void Int()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(1, 1))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueEquality(1, 2))).ShouldThrow<AssertFailedException>();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(2, 1))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(2, 2))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(1, 1))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(1, 2))).Should().Throw<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(2, 1))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(2, 2))).Should().Throw<AssertFailedException>();
 		}
 
 		[TestMethod]
 		public void String()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality("foo", "bar"))).ShouldThrow<AssertFailedException>();
-			((Action) (() => ValueTypeAssertions.HasValueInequality("foo", "foo"))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueEquality("foo", "bar"))).Should().Throw<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueInequality("foo", "foo"))).Should().Throw<AssertFailedException>();
 		}
 	}
 }
