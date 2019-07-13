@@ -14,7 +14,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.How_to_use_the_Assertions
 		{
 			var anObject = new C(42);
 			((Action) (() => ValueTypeAssertions.HasValueEquality(anObject, anObject)))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("Pass two different references to compare.");
 		}
 

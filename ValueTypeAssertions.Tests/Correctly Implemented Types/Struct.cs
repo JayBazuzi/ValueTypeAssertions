@@ -12,20 +12,20 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 		[TestMethod]
 		public void EqualValues()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(1), new AStruct(1)))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct(1)))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(1), new AStruct(1)))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct(1)))).Should().Throw<AssertFailedException>();
 
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(0), new AStruct()))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(0), new AStruct()))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(0), new AStruct()))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(0), new AStruct()))).Should().Throw<AssertFailedException>();
 		}
 
 		[TestMethod]
 		public void DifferentValues()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(1), new AStruct(2)))).ShouldThrow<AssertFailedException>();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct(2)))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct()))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(), new AStruct(2)))).ShouldNotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AStruct(1), new AStruct(2)))).Should().Throw<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct(2)))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(1), new AStruct()))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AStruct(), new AStruct(2)))).Should().NotThrow();
 		}
 
 		private struct AStruct
