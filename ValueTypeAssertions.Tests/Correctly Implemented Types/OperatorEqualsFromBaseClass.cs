@@ -13,15 +13,15 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 		public void EqualValues()
 		{
 			(new AClass(1) == new AClass(1)).Should().BeTrue();
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1)))).ShouldNotThrow();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(1)))).ShouldThrow<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1)))).Should().NotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(1)))).Should().Throw<AssertFailedException>();
 		}
 
 		[TestMethod]
 		public void DifferentValues()
 		{
-			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(2)))).ShouldThrow<AssertFailedException>();
-			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2)))).ShouldNotThrow();
+			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(2)))).Should().Throw<AssertFailedException>();
+			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2)))).Should().NotThrow();
 		}
 
 		private class AClass : BClass

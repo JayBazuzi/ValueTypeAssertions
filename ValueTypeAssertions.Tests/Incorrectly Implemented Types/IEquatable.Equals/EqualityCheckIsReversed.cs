@@ -13,7 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.IEquata
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new C(1), new C(1))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("IEquatable<>.Equals");
 		}
 
@@ -21,7 +21,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.IEquata
 		public void DifferentValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new C(1), new C(2))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("IEquatable<>.Equals");
 		}
 

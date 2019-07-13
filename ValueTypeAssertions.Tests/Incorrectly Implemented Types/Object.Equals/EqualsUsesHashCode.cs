@@ -14,7 +14,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Object.
 		{
 			// Let's make a hash collision!
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new C(0, 33), new C(1, 0))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("Equals(object)");
 		}
 

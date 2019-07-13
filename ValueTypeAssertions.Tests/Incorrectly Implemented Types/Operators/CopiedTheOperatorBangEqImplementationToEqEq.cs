@@ -13,7 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Operato
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("operator ==");
 		}
 
@@ -21,7 +21,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Operato
 		public void DifferentValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueInequality(new AClass(1), new AClass(2))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("operator ==");
 		}
 

@@ -13,7 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Incorrectly_Implemented_Types.Object.
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new AClass(1), new AClass(1))))
-				.ShouldThrow<AssertFailedException>()
+				.Should().Throw<AssertFailedException>()
 				.And.Message.Should().Contain("compare to other type");
 		}
 

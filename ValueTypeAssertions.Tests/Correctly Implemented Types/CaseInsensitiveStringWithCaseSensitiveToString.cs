@@ -13,7 +13,7 @@ namespace Bazuzi.ValueTypeAssertions.Tests.Correctly_Implemented_Types
 		public void EqualValues()
 		{
 			((Action) (() => ValueTypeAssertions.HasValueEquality(new C("foo"), new C("FOO"))))
-				.ShouldNotThrow();
+				.Should().NotThrow();
 		}
 
 		private class C
