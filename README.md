@@ -19,14 +19,10 @@ class NtfsPath
 [Test]
 public void NtfsPathHasValueEquality()
 {
-  ValueTypeAssertions.HasValueEquality(new NtfsPath("foo.txt"), new NtfsPath("foo.txt"));
-  ValueTypeAssertions.HasValueInequality(new NtfsPath("foo.txt"), new NtfsPath("bar.txt"));
-}
-
-[Test]
-public void NtfsPathIsCaseInsensitive()
-{
-  ValueTypeAssertions.HasValueEquality(new NtfsPath("foo.txt"), new NtfsPath("FOO.TXT"));
+    new NtfsPath("foo.txt")
+      .ShouldBeEquivalentTo(new NtfsPath("foo.txt"))
+      .And(new NtfsPath("FOO.TXT"))
+      .ButDifferentFrom(new NtfsPath("bar.txt"))
 }
 ```
 
