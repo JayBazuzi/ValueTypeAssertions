@@ -1,5 +1,5 @@
 version: 0.0.{build}
-image: Visual Studio 2015
+image: Visual Studio 2019
 environment:
   TreatWarningsAsErrors: true
 before_build:
