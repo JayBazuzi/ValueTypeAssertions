@@ -12,7 +12,7 @@
     <description>$description$</description>
     <copyright>Copyright 2016</copyright>
     <dependencies>
-      <group targetFramework=".NETFramework4.7.2" />
+      <group targetFramework=".NETFramework4.5.2" />
     </dependencies>
   </metadata>
 </package>
